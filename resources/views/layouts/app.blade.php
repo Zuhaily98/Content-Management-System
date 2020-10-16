@@ -77,8 +77,15 @@
         </nav>
 
         <main class="py-4">
-            @auth <!-- only if the user is logged in, show this side bar -->
+            @auth
+            <!-- only if the user is logged in, show this side bar -->
             <div class="container">
+                @if(session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+                @endif
+
                 <div class="row">
                     <div class="col-md-4">
                         <ul class="list-group">
@@ -86,7 +93,7 @@
                                 <a href="">Posts</a>
                             </li>
                             <li class="list-group-item">
-                                <a href="">Categories</a>
+                                <a href="/categories">Categories</a>
                             </li>
                         </ul>
                     </div>
@@ -97,7 +104,7 @@
                 </div>
             </div>
             @else
-                @yield('content')
+            @yield('content')
             @endauth
 
         </main>
