@@ -67,9 +67,12 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        //dont want to create new view for edit/update since the form is similar to create view.
+        //reuse create.blade.php instead
+
+        return view('categories.create')->with('category', $category);
     }
 
     /**
