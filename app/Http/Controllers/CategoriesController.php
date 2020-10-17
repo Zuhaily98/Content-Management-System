@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
-use App\Http\Requests\CreateCategoryRequest;
+use App\Http\Requests\Categories\CreateCategoryRequest;
+use App\Http\Requests\Categories\UpdateCategoryRequest;
 
 class CategoriesController extends Controller
 {
@@ -67,7 +68,7 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Category $category) 
     {
         //dont want to create new view for edit/update since the form is similar to create view.
         //reuse create.blade.php instead
@@ -82,9 +83,21 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, Category $category) //Category $category is the current dynamic property
     {
-        //
+        //method 1
+        // $category->name = $request->name;
+        // $category->save();
+
+        //method 2 - using update() function
+        $category->update([
+            'name' => $request->name
+        ]);
+
+
+        session()->flash('success', 'Category updated successfully!');
+
+        return redirect(route('categories.index'));
     }
 
     /**

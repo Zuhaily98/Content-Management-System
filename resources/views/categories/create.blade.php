@@ -19,14 +19,21 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{ route('categories.store') }}" method="POST">
+            <form action="{{ isset($category) ? route('categories.update', $category->id) : route('categories.store') }}" method="POST"> 
+                <!-- if there is existing category, go to update path with its current dynamic url, if not, go to store path -->
                 @csrf
+                
+                <!-- since form can only do action on GET or POST, use that kind of method to tell laravel to do method PUT instead -->
+                @if(isset($category))
+                    @method('PUT')
+                @endif
+
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" class="form-control" name="name" value="{{ isset($category) ? $category->name : '' }}">
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success">Add Category</button>
+                    <button class="btn btn-success">{{ isset($category) ? 'Update Category' : 'Add Category' }}</button>
                 </div>
             </form>
         </div>
