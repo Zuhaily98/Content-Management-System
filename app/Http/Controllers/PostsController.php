@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\Posts\CreatePostsRequest;
 
 class PostsController extends Controller
 {
@@ -32,9 +33,16 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePostsRequest $request)
     {
-        //
+        //upload image to storage
+        dd($request->image->store('posts'));
+
+        //create post
+
+        //flash message
+
+        //redirect
     }
 
     /**

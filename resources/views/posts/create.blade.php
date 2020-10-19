@@ -20,7 +20,8 @@
                 </div>
             @endif
 
-            <form action="{{ route('posts.store') }}" method="POST">
+            <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+                {{-- enctype multipart/form-data is for the forum to submit the multimedia file  --}}
                 @csrf
 
                 <div class="form-group">
