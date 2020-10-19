@@ -21,3 +21,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('categories','CategoriesController'); //to create all routes in CategoriesController
+Route::resource('posts', 'PostsController');
