@@ -15,7 +15,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+        return view('posts.index')->with('posts', Post::all()); //fetch all post data in db and the data is fetch using the key 'posts'
     }
 
     /**
