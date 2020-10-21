@@ -95,16 +95,32 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //soft delete
-        $post->delete();
+        //without using route model binding
+        $post = Post::withTrashed()->where('id', $id)->firstorFail(); //firstofFail is for laravel to catch if user try to delete non existing data
+
+
+        if($post->trashed())
+        {
+            $post->forceDelete();
+        }
+        else
+        {
+            $post->delete(); //soft delete first before permanently delete in list of trashed posts 
+        }
 
         session()->flash('success', 'Post thrashed successfully!');
 
         return redirect(route('posts.index'));
     }
 
+    /**
+     * Soft delete the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function trashed()
     {
         $trashed = Post::withTrashed()->get();  //fetch all the post even the one that had been trashed
