@@ -10,6 +10,7 @@
         <div class="card-header">Posts</div>
 
         <div class="card-body">
+            @if ($posts->count()>0)
             <table class="table">
                 <thead>
                     <th>Image</th>
@@ -47,6 +48,9 @@
                         </tr>
                     @endforeach
             </table>
+            @else
+                <h3 class="text-center">No posts yet</h3>
+            @endif
         </div>
     </div>
 
