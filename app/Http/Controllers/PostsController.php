@@ -104,4 +104,11 @@ class PostsController extends Controller
 
         return redirect(route('posts.index'));
     }
+
+    public function trashed()
+    {
+        $trashed = Post::withTrashed()->get();  //fetch all the post even the one that had been trashed
+
+        return view('posts.index')->withPosts($trashed);    //withPosts($trashed) is equal to with('posts', $trashed)
+    }
 }
