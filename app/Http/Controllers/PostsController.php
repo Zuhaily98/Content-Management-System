@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Http\Requests\Posts\CreatePostsRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
@@ -103,6 +104,7 @@ class PostsController extends Controller
 
         if($post->trashed())
         {
+            Storage::delete($post->image);
             $post->forceDelete();
         }
         else
