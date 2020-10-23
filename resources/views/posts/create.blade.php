@@ -21,7 +21,8 @@
             @endif
 
             <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
-                {{-- enctype multipart/form-data is for the forum to submit the multimedia file  --}}
+                {{-- enctype multipart/form-data is for the forum to submit the multimedia
+                file --}}
                 @csrf
 
                 <div class="form-group">
@@ -36,7 +37,8 @@
 
                 <div class="form-group">
                     <label for="content">Content</label>
-                    <textarea name="content" id="content" cols="5" rows="5" class="form-control"></textarea>
+                    <input id="content" type="hidden" name="content">
+                    <trix-editor input="content"></trix-editor>
                 </div>
 
                 <div class="form-group">
@@ -59,4 +61,19 @@
 
     </div>
 
+@endsection
+
+@section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.0/trix.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr('#published_at', {
+            enableTime: true
+        })
+    </script>
+@endsection
+
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.0/trix.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @endsection
