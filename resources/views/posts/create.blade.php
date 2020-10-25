@@ -4,7 +4,7 @@
 
     <div class="card card-default">
         <div class="card-header">
-            {{ isset($post) ? 'Edit Post' : 'Create Post' }}
+            {{ isset($post) ? 'Edit Post' : 'Add Post' }}
         </div>
 
         <div class="card-body">
