@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Http\Requests\Posts\CreatePostsRequest;
 use App\Http\Requests\Posts\UpdatePostRequest;
-use Illuminate\Support\Facades\Storage;
+
 
 class PostsController extends Controller
 {
@@ -96,7 +96,7 @@ class PostsController extends Controller
             //upload it
             $image = $request->image->store('posts');
             //delete old one
-            Storage::delete($post->image);
+            $post->deleteImage(); //using function delete in model Post
 
             $data['image'] = $image;
         } 
@@ -125,7 +125,7 @@ class PostsController extends Controller
 
         if($post->trashed())
         {
-            Storage::delete($post->image);
+            $post->deleteImage();
             $post->forceDelete();
         }
         else
