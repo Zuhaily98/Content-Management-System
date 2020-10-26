@@ -21,6 +21,9 @@
         a.btn-info {
             color: #fff;
         }
+        button.btn.btn-info {
+            color: #fff;
+        }
     </style>
 
     <!-- css -->

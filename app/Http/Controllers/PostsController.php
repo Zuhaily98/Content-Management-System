@@ -151,8 +151,10 @@ class PostsController extends Controller
         return view('posts.index')->withPosts($trashed);    //withPosts($trashed) is equal to with('posts', $trashed)
     }
 
-    public function restore(Post $post)
+    public function restore($id)
     {
+        $post = Post::withTrashed()->where('id', $id)->firstorFail();
+
         $post->restore();
 
         session()->flash('success', 'Post restored successfully!');
