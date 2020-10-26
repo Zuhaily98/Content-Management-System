@@ -24,3 +24,4 @@ Route::resource('categories','CategoriesController'); //to create all routes in 
 Route::resource('posts', 'PostsController');
 
 Route::get('trashed-posts','PostsController@trashed')->name('trashed-posts.index');
+Route::put('restore-posts/{post}', 'PostsController@restore')->name('restore-post');
