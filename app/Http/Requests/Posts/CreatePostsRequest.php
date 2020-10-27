@@ -27,7 +27,8 @@ class CreatePostsRequest extends FormRequest
             'title' => 'required|unique:posts', //must specify unique:posts means, it is unique to the posts table
             'description' => 'required',
             'content' => 'required',
-            'image' => 'required|image'
+            'image' => 'required|image',
+            'category' => 'required'
         ];
     }
 }

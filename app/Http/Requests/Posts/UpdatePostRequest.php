@@ -26,7 +26,8 @@ class UpdatePostRequest extends FormRequest
         return [
             'title' => 'required',
             'description' => 'required',
-            'content' => 'required' //image not necessarily required since user can use the current one instead of updating new image
+            'content' => 'required', //image not necessarily required since user can use the current one instead of updating new image
+            'category' => 'required'
         ];
     }
 }
