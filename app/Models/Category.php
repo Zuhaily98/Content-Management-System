@@ -11,4 +11,9 @@ class Category extends Model
 
     //attributes for mass assignment
     protected $fillable = ['name'];
+
+    public function posts() //notice posts is with 's' bcs of hasMany relationship
+    {
+        return $this->hasMany(Post::class);
+    }
 }

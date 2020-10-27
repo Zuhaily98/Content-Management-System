@@ -26,4 +26,9 @@ class Post extends Model
         Storage::delete($this->image);
     }
 
+    public function category() //category() is the name of model in small case
+    {
+        return $this->belongsTo(Category::class); //tells laravel that Post model belongs to Category model
+    }
+
 }
