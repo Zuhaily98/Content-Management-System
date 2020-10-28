@@ -15,6 +15,7 @@
                     <thead>
                         <th>Image</th>
                         <th>Title</th>
+                        <th>Category</th>
                         <th></th>
                         <th></th>
                     </thead>
@@ -28,15 +29,22 @@
                                 <td>
                                     {{ $post->title }}
                                 </td>
+                                <td>
+                                    <a href="{{ route('categories.edit', $post->category->id) }}">
+                                        {{ $post->category->name }}
+                                        <!--category here is the model Post, the relation belongs to-->
+                                    </a>
+                                    
+                                </td>
                                 @if ($post->trashed())
                                     <td>
-                                    <form action="{{ route('restore-post', $post->id) }}" method="POST">
-                                        @csrf
-                                        @method('PUT')
+                                        <form action="{{ route('restore-post', $post->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
 
-                                        <button type="submit" class="btn btn-info btn-sm">Restore</button> 
+                                            <button type="submit" class="btn btn-info btn-sm">Restore</button>
 
-                                    </form>
+                                        </form>
                                     </td>
                                 @else
                                     <td>
