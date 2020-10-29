@@ -11,6 +11,12 @@ use App\Http\Requests\Posts\UpdatePostRequest;
 
 class PostsController extends Controller
 {
+    public function __construct () //install middleware for verify existance of categories before enabling user to create new post
+    {
+        $this->middleware('verifyCategoriesCount')->only('create', 'store'); //this middleware is applied on create and store function
+    }
+
+    
     /**
      * Display a listing of the resource.
      *
