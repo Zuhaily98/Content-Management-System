@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class VerifyCategoriesCount
 {
@@ -19,7 +20,7 @@ class VerifyCategoriesCount
         if (Category::all()->count() == 0){
             return redirect()->back();
         }
-        
+
         return $next($request);
     }
 }
