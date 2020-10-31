@@ -8,17 +8,7 @@
         </div>
 
         <div class="card-body">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul class="list-group">
-                        @foreach ($errors->all() as $error)
-                            <li class="list-group-item">
-                                {{ $error }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            @include('partials.errors')
 
             <form action="{{ isset($post) ? route('posts.update', $post->id) : route('posts.store') }}" method="POST" enctype="multipart/form-data">
                 {{-- enctype multipart/form-data is for the forum to submit the multimedia
