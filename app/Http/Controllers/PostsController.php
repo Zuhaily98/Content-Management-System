@@ -9,6 +9,7 @@ use App\Http\Requests\Posts\CreatePostsRequest;
 use App\Http\Requests\Posts\UpdatePostRequest;
 
 
+
 class PostsController extends Controller
 {
     public function __construct () //install middleware for verify existance of categories before enabling user to create new post
@@ -131,7 +132,7 @@ class PostsController extends Controller
     public function destroy($id)
     {
         //without using route model binding
-        $post = Post::withTrashed()->where('id', $id)->firstorFail(); //firstofFail is for laravel to catch if user try to delete non existing data
+        $post = Post::withTrashed()->where('id', $id)->firstOrFail(); //firstofFail is for laravel to catch if user try to delete non existing data
 
 
         if($post->trashed())
