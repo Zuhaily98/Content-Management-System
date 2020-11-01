@@ -63,6 +63,7 @@
                         >
                         {{ $category->name }}
                     </option>
+
                         @endforeach
                     </select>
                 </div>

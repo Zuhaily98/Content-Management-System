@@ -14,8 +14,7 @@ class PostsController extends Controller
 {
     public function __construct () //install middleware for verify existance of categories before enabling user to create new post
     {
-        session()->flash('error', 'You need to add categories before creating a post.');
-        $this->middleware('verifyCategoriesCount')->only('create', 'store'); //this middleware is applied on create and store function
+        $this->middleware('verifyCategoriesCount')->only(['create', 'store']); //this middleware is only applied on create and store function
         
         return redirect('categories.create');
     }
@@ -38,7 +37,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create')->with('categories', Category::all());
+        return view('posts.create')->with('categories', Category::all()); //also invite Category so that we get all of categories record
     }
 
     /**
@@ -60,7 +59,7 @@ class PostsController extends Controller
             'content' => $request->content,
             'image' => $image,
             'published_at' => $request->published_at,
-            'category_id' => $request->category
+            'category_id' => $request->category //category here is because the name of select option is category
         ]);
 
         //flash message

@@ -11,7 +11,7 @@
     <div class="card-header">Categories</div>
     <div class="card-body">
         @if ($categories->count()>0)
-        <table class="table">
+        <table class="table"> 
             <thead>
                 <th>Name</th>
                 <th>Post Count</th>

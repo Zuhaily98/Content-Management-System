@@ -18,7 +18,9 @@ class VerifyCategoriesCount
     public function handle(Request $request, Closure $next)
     {
         if (Category::all()->count() == 0){
-            return redirect()->back();
+            session()->flash('error', 'You need to add categories before creating a post.');
+
+            return redirect(route('categories.create'));
         }
 
         return $next($request);
