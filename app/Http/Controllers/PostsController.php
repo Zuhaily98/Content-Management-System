@@ -118,6 +118,10 @@ class PostsController extends Controller
             $data['image'] = $image;
         } 
 
+        if($request->tags){
+            $post->tags()->sync($request->tags);  //sync is a function for many to many relationship - check request if theres new tag thats is not attached, then it will be attached and otherwise
+        }
+
         //update attributes
         $post->update($data);
 
