@@ -49,12 +49,13 @@ class PostsController extends Controller
      */
     public function store(CreatePostsRequest $request)
     {
+        //dd($request->all());
         //upload image to storage
         //dd($request->image->store('posts'));
         $image = $request->image->store('posts');
 
         //create post
-        Post::create([
+        $post = Post::create([
             'title' => $request->title,
             'description' => $request->description,
             'content' => $request->content,
@@ -62,6 +63,10 @@ class PostsController extends Controller
             'published_at' => $request->published_at,
             'category_id' => $request->category //category here is because the name of select option is category
         ]);
+
+        if($request->tags){
+            $post->tags()->attach($request->tags); //because belongs to many relationship, the selected tag(s) will be attached to the newly created post
+        }
 
         //flash message
         session()->flash('success', 'Post created successfully!');

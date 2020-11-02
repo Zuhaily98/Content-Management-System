@@ -74,7 +74,8 @@
                 @if ($tags->count() > 0)
                     <div class="form-group">
                         <label for="tags">Tags</label>
-                        <select name="tags" id="tags" class="form-control" multiple>
+
+                        <select name="tags[]" id="tags" class="form-control" multiple> <!-- tags[] enables the user to select an array of tags options  -->
                             @foreach ($tags as $tag)
                                 <option value="{{ $tag->id }}">
                                     {{ $tag->name }}
