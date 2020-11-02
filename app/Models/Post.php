@@ -32,4 +32,9 @@ class Post extends Model
         return $this->belongsTo(Category::class); //tells laravel that Post model belongs to Category model
     }
 
+    public function tags() //tags with s because many to many
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
 }

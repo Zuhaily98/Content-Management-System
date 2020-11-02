@@ -10,7 +10,8 @@
         <div class="card-body">
             @include('partials.errors')
 
-            <form action="{{ isset($post) ? route('posts.update', $post->id) : route('posts.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ isset($post) ? route('posts.update', $post->id) : route('posts.store') }}" method="POST"
+                enctype="multipart/form-data">
                 {{-- enctype multipart/form-data is for the forum to submit the multimedia
                 file --}}
                 @csrf
@@ -21,12 +22,14 @@
 
                 <div class="form-group">
                     <label for="title">Title</label>
-                <input type="text" class="form-control" name="title" id="title" value="{{ isset($post) ? $post->title : '' }}">
+                    <input type="text" class="form-control" name="title" id="title"
+                        value="{{ isset($post) ? $post->title : '' }}">
                 </div>
 
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea name="description" id="description" cols="5" rows="5" class="form-control">{{ isset($post) ? $post->description : '' }}</textarea>
+                    <textarea name="description" id="description" cols="5" rows="5"
+                        class="form-control">{{ isset($post) ? $post->description : '' }}</textarea>
                 </div>
 
                 <div class="form-group">
@@ -34,10 +37,11 @@
                     <input id="content" type="hidden" name="content" value="{{ isset($post) ? $post->content : '' }}">
                     <trix-editor input="content"></trix-editor>
                 </div>
- 
+
                 <div class="form-group">
                     <label for="published_at">Published At</label>
-                    <input type="text" class="form-control" name="published_at" id="published_at" value="{{ isset($post) ? $post->published_at : '' }}">
+                    <input type="text" class="form-control" name="published_at" id="published_at"
+                        value="{{ isset($post) ? $post->published_at : '' }}">
                 </div>
 
                 @if (isset($post))
@@ -54,19 +58,31 @@
                     <label for="category">Category</label>
                     <select name="category" id="category" class="form-control">
                         @foreach ($categories as $category)
-                    <option value="{{ $category->id }}"
-                        @if (isset($post))
-                            @if ($category->id == $post->category_id)
-                                selected
-                            @endif           
+                            <option value="{{ $category->id }}" @if (isset($post))
+                                @if ($category->id == $post->category_id)
+                                    selected
+                                @endif
                         @endif
                         >
                         {{ $category->name }}
-                    </option>
+                        </option>
 
                         @endforeach
                     </select>
                 </div>
+
+                @if ($tags->count() > 0)
+                    <div class="form-group">
+                        <label for="tags">Tags</label>
+                        <select name="tags" id="tags" class="form-control" multiple>
+                            @foreach ($tags as $tag)
+                                <option value="{{ $tag->id }}">
+                                    {{ $tag->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                @endif
 
                 <div class="form-group">
                     <button class="btn btn-success">
@@ -89,6 +105,7 @@
         flatpickr('#published_at', {
             enableTime: true
         })
+
     </script>
 @endsection
 
