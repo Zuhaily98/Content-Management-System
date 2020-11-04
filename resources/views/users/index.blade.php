@@ -20,7 +20,7 @@
                         @foreach ($users as $user)
                             <tr>
                                 <td>
-
+                                    <img width="40px" height="40px" style="border-radios: 50%" src="{{ Gravatar::src($user->email) }}" alt="">
                                 </td>
                                 <td>
                                     {{ $user->name }}
